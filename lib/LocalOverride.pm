@@ -8,8 +8,8 @@ use PerlIO::scalar;
 our $VERSION = 0.001000;
 
 our $base_namespace = '';
-our $core_only = 0;
-our $local_prefix = 'Local';
+our $core_only      = 0;
+our $local_prefix   = 'Local';
 
 BEGIN { unshift @INC, \&require_local }
 
