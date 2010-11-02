@@ -70,7 +70,7 @@ sub import {
 }
 
 sub unimport {
-    @INC = grep { $_ != \&require_local } @INC;
+    @INC = grep { !(ref $_ && $_ == \&require_local) } @INC;
 }
 
 1;
