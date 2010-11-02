@@ -5,7 +5,7 @@ use warnings;
 
 use PerlIO::scalar;
 
-our $VERSION = 0.900000;
+our $VERSION = 1.000000;
 
 our $base_namespace = '';
 our $core_only      = 0;
