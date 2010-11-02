@@ -69,6 +69,10 @@ sub import {
     warn "LocalOverride loaded with unrecognized option $_\n" for keys %opts;
 }
 
+sub unimport {
+    @INC = grep { $_ != \&require_local } @INC;
+}
+
 1;
 
 __END__
