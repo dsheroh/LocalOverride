@@ -108,7 +108,7 @@ same package as the original module:
   In /path/to/libs/Foo.pm:
 
   package Foo;
-  
+
   sub bar { ... }
   sub baz { ... }
 
@@ -116,7 +116,7 @@ same package as the original module:
   In /path/to/libs/Local/Foo.pm:
 
   package Foo;     # Not Local::Foo!
-  
+
   sub bar { ... }  # Replaces the original sub Foo::bar
 
 This is, obviously, a very extreme approach and one which should be used
