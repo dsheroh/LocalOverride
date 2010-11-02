@@ -48,6 +48,27 @@ sub require_local {
     return $fh;
 }
 
+sub import {
+    my (undef, %opts) = @_;
+
+    if ($opts{base_namespace}) {
+        $base_namespace = $opts{base_namespace};
+        delete $opts{base_namespace};
+    }
+
+    if ($opts{core_only}) {
+        $core_only = $opts{core_only};
+        delete $opts{core_only};
+    }
+
+    if ($opts{local_prefix}) {
+        $local_prefix = $opts{local_prefix};
+        delete $opts{local_prefix};
+    }
+
+    warn "LocalOverride loaded with unrecognized option $_\n" for keys %opts;
+}
+
 1;
 
 __END__
