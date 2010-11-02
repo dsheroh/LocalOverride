@@ -86,6 +86,16 @@ __END__
   # Load Foo, followed by Local::Foo
   use Foo;
 
+Or
+
+  use LocalOverride ( base_namespace => 'MyApp', local_prefix => 'Custom' );
+
+  # Just load Moose, since it's not in MyApp::*
+  use Moose;
+
+  # Load MyApp::Base, followed by MyApp::Custom::Base
+  use MyApp::Base
+
 =head1 DESCRIPTION
 
 When this module is loaded and you C<use> or C<require> another module, it
@@ -123,12 +133,14 @@ in your override modules to prevent this.
 =head1 CONFIGURATION
 
 The following configuration settings can be used to enable/disable loading of
-local override modules or customize where they are located.
+local override modules or customize where they are located.  They can be set
+either by including them as parameters to C<use LocalOverride> or by setting
+C<$LocalOverride::[option]>.
 
-Note that, because C<use> is processed at compile-time, any changes to these
-settings must be made within a C<BEGIN> block if they are intended to affect
-modules that you C<use>.  This is not necessary for modules you C<require>,
-as C<require> is processed within the normal flow of the program.
+Note that, because C<use> is processed at compile-time, any changes made using
+the latter method must be made within a C<BEGIN> block if they are intended to
+affect modules that you C<use>.  This is not necessary for modules you
+C<require>, as C<require> is processed within the normal flow of the program.
 
 =head2 base_namespace
 
@@ -153,15 +165,13 @@ B<Default:> 0
 If this is set to a true value, then local override processing will be
 disabled.
 
+This module can also be disabled with C<no LocalOverride> if you prefer to
+unload it more completely.
+
 =head2 local_prefix
 
 B<Default:> 'Local'
 
 The local prefix defines the namespace (within C<$base_namespace>) used for
-local override definitions.  If you want them to be under C<Plugin> rather
-than C<Local>, then setting
-
-  $LocalOverride::local_prefix = 'Plugin';
-
-will do this.
+local override definitions.
 
